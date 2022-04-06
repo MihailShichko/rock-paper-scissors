@@ -6,7 +6,9 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            var t = new Table(new string[] { "1", "2", "3", "4", "5"});
+            var t = new Table<string>(4, 4);
+            var rules = new Rules();
+            rules.FillTable(t, new string[] {"rock", "scessors", "paper"});
             t.ShowTable();
 
 

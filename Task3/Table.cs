@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace Task3
 {
-    class Table
+    class Table<T>
     {
         private string[,] table;
-        private string[] args;
         public int X { get; private set; }
         public int Y { get; private set; }
-        public Table(string[] args)
+        public Table(int x, int y)
         {
-            table = new string[args.Length + 1, args.Length + 1];
-            X = args.Length + 1;
-            this.args = args;
-            this.FillTable();
+            table = new string[x, y];
+            X = x;
+            Y = y;
         }
 
         public void Insert(int x, int y, string value)
@@ -25,12 +23,13 @@ namespace Task3
             table[x, y] = value;
         }
 
-        private void FillTable()
+
+        public void FillVerges(T[] left, T[] up)
         {
             for(int i = 1, j = 0; i < table.GetLength(0); i++, j++)
             {
-                table[0, i] = args[j];
-                table[i, 0] = args[j];
+                table[0, i] = left[j].ToString();
+                table[i, 0] = up[j].ToString();
             }
 
             for(int i = 1; i < table.GetLength(0); i++)
@@ -55,7 +54,7 @@ namespace Task3
 
         private int Win(int ind1, int ind2)
         {
-            int len = (args.Length - 1) / 2;
+            int len = (X) / 2;
             if(ind1 < ind2)
             {
                 if(ind1 + len >= ind2)
@@ -70,9 +69,9 @@ namespace Task3
             }
             else if(ind1 > ind2)
             {
-                if(ind1 + len  >= args.Length)
+                if(ind1 + len  >= X)
                 {
-                    int delta = ind1 + len - args.Length;
+                    int delta = ind1 + len - X;
                     if(delta >= ind2)
                     {
                         return 1;
