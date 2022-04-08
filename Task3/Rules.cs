@@ -2,7 +2,6 @@
 {
     class Rules
     {
-
         public void FillTable(Table<string> table, string[] args)
         {
             for (int i = 1, j = 0; i < table.X; i++, j++)
@@ -15,7 +14,7 @@
             {
                 for (int j = 1; j < table.X; j++)
                 {
-                    switch (this.Win(i - 1, j - 1, args))
+                    switch (this.Fight(j - 1, i - 1, args))
                     {
                         case 1:
                             table.Insert(j,i,"Win");
@@ -31,7 +30,7 @@
             }
         }
 
-        public int Win(int ind1, int ind2, string[] args)
+        public int Fight(int ind1, int ind2, string[] args)
         {
             int len = (args.Length - 1) / 2;
             if (ind1 < ind2)
