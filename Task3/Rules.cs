@@ -1,4 +1,6 @@
-﻿namespace Task3
+﻿using System;
+
+namespace Task3
 {
     class Rules
     {
@@ -32,6 +34,11 @@
 
         public int Fight(int ind1, int ind2, string[] args)
         {
+            if (ind1 > args.Length || ind2 > args.Length)
+            {
+                throw new ArgumentException();
+            }
+
             int len = (args.Length - 1) / 2;
             if (ind1 < ind2)
             {
